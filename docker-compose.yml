@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    command: -c fsync=off
+    env_file:
+      - .env/.env.postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
