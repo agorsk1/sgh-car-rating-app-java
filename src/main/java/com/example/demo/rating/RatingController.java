@@ -1,6 +1,7 @@
 package com.example.demo.rating;
 
 import com.example.demo.rating.errors.IncorrectEmailException;
+import com.example.demo.rating.errors.IncorrectRatingValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,6 +29,13 @@ public class RatingController {
 
     @ExceptionHandler(IncorrectEmailException.class)
     public ResponseEntity<?> conflict(IncorrectEmailException e) {
+        String message = NestedExceptionUtils.getMostSpecificCause(e).getMessage();
+        return new ResponseEntity<Object>(
+                message, new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(IncorrectRatingValueException.class)
+    public ResponseEntity<?> conflict(IncorrectRatingValueException e) {
         String message = NestedExceptionUtils.getMostSpecificCause(e).getMessage();
         return new ResponseEntity<Object>(
                 message, new HttpHeaders(), HttpStatus.CONFLICT);
