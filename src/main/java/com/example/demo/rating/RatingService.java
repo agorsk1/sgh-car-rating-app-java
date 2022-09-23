@@ -18,7 +18,7 @@ public class RatingService {
         if (rating.getEmail().contains("@")){
             ratingRepository.save(rating);
         } else {
-            throw new IncorrectEmailException("email" + rating.getEmail() + "is incorrect");
+            throw new IncorrectEmailException("email: " + rating.getEmail() + " is incorrect");
         }
 
 

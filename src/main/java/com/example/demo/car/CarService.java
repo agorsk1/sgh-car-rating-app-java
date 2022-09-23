@@ -29,7 +29,6 @@ public class CarService {
         if (cars.isEmpty()) {
             throw new IncorrectMakeNameException("Incorrect car make : " + car.getMake());
         }
-        System.out.println(cars);
         for (int i = 0; i < cars.size(); i++){
             CarVPC carVPC = cars.get(i);
             if (car.getModel().equalsIgnoreCase(carVPC.getModel())){
